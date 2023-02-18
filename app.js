@@ -5,30 +5,14 @@ const fs = require('fs');
 const PORT = 3033;
 
 const server = http.createServer((req, res) => {
-  console.log(req.method, req.url)
+
+  const exp = req.url;
  
-  if(req.url = '/') {
-    fs.readFile('./index.html', (err, data) => {
-      if(err) {
-        console.log(err);
-        res.end();
-      } else {
-        res.write(data);
-        res.end();
-      }
-    })
-  }
-  
-  if(req.url = '/favicon.ico') {
-    fs.readFile('./favicon.ico', (err, data) => {
-      if(err) {
-        console.log(err);
-        res.end();
-      } else {
-        res.write(data);
-        res.end();
-      }
-    })
+  switch(exp) {
+    case '/':
+      fs.readFile(('./index.html'), (err, data) => { err ? res.end() : res.write(data), res.end()});
+    case '/favicon.ico':
+      fs.readFile(('./favicon.ico'), (err, data) => { err ? res.end() : res.write(data), res.end()});
   }
 });
 

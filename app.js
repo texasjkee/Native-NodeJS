@@ -6,9 +6,7 @@ const PORT = 3033;
 
 const server = http.createServer((req, res) => {
 
-  const exp = req.url;
- 
-  switch(exp) {
+  switch(req.url) {
     case '/':
       fs.readFile(('./index.html'), (err, data) => { err ? res.end() : res.write(data), res.end()});
     case '/favicon.ico':

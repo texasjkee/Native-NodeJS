@@ -29,20 +29,32 @@ app.get('/test/:id', (req, res) => {
     res.json(foundTest);
 });
 app.get('/tests', (req, res) => {
-    let foundTest = db.tests;
+    let foundTests = db.tests;
     if (req.query.title) {
-        foundTest = foundTest.filter(t => t.title.indexOf(req.query.title) > -1);
+        foundTests = foundTests.filter(t => t.title.indexOf(req.query.title) > -1);
     }
-    res.json(foundTest);
+    res.json(foundTests);
 });
 app.post('/users', (req, res) => {
+    if (!req.body.title) {
+        res.sendStatus(400);
+        return;
+    }
     const createdTest = {
         id: +(new Date()),
         title: req.body.title
     };
     db.tests.push(createdTest);
     console.log(db.tests);
-    res.json(createdTest);
+    res
+        .sendStatus(201)
+        .json(createdTest);
+});
+app.delete('/test/:id', (req, res) => {
+    const deleteTest = db.tests = db.tests.filter(el => el.id !== +req.params.id);
+    res
+        .sendStatus(204)
+        .json(deleteTest);
 });
 app.listen(PORT, () => {
     console.log(`Starting app at port ${PORT} `);

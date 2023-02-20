@@ -3,6 +3,15 @@ import express from 'express';
 const app = express();
 const PORT = 3033;
 
+const HTTP_STATUS = {
+  OK_200: 200,
+  CREATED_201: 201,
+  NO_CONTENT_204: 204,
+
+  BAD_REQUEST_400: 400,
+  NOT_FOUND_404: 404
+}
+
 const jsonBodyMiddleware = express.json()
 
 app.use(jsonBodyMiddleware);
@@ -20,66 +29,59 @@ const db = {
 app.get('/', (req, res) => {
   res.send('texasjkee')
 })
-app.get('/test/:id', (req, res) => {
 
+app.get('/test/:id', (req, res) => {
   const foundTest = db.tests.find(el => el.id === +req.params.id)
- 
   if(!foundTest) {
-    res.sendStatus(404);
+    res.sendStatus(HTTP_STATUS.NOT_FOUND_404);
     return;
   }
-
-  res.json(foundTest)
+  res
+    .sendStatus(HTTP_STATUS.OK_200)
+    .json(foundTest)
 })
-app.get('/tests', (req, res) => {
- 
-  let foundTests = db.tests;
 
+app.get('/tests', (req, res) => {
+  let foundTests = db.tests;
   if(req.query.title) {
      foundTests = foundTests.filter(t => t.title.indexOf(req.query.title as string) > -1);
   }
-
-  res.json(foundTests)
+  res
+    .sendStatus(HTTP_STATUS.OK_200)
+    .json(foundTests)
 })
-app.post('/users', (req, res) => {
 
- if(!req.body.title) {
-  res.sendStatus(400);
-  return
- }
-
+app.post('/user', (req, res) => {
+   if(!req.body.title) {
+    res.sendStatus(400);
+    return
+   }
   const createdTest = {
     id: +(new Date()),
     title: req.body.title
   }
-
   db.tests.push(createdTest)
-  console.log(db.tests)
   res
-    .sendStatus(201)
+    .sendStatus(HTTP_STATUS.CREATED_201)
     .json(createdTest)
 })
+
 app.delete('/test/:id', (req, res) => {
   const deleteTest = db.tests = db.tests.filter(el => el.id !== +req.params.id);
-
   res
-    .sendStatus(204)
+    .sendStatus(HTTP_STATUS.NO_CONTENT_204)
     .json(deleteTest);
 })
 
 app.put('/test/:id', (req, res) => {
-
   const foundTest = db.tests.find(el => el.id === +req.params.id)
- 
   if(!foundTest) {
-    res.sendStatus(404);
+    res.sendStatus(HTTP_STATUS.NOT_FOUND_404);
     return;
   }
-  
- foundTest.title = req.body.title; 
-   console.log(db.tests) 
+  foundTest.title = req.body.title; 
   res
-    .sendStatus(204)
+    .sendStatus(HTTP_STATUS.NO_CONTENT_204)
     .json(foundTest)
 })
 

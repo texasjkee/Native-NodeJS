@@ -56,6 +56,18 @@ app.delete('/test/:id', (req, res) => {
         .sendStatus(204)
         .json(deleteTest);
 });
+app.put('/test/:id', (req, res) => {
+    const foundTest = db.tests.find(el => el.id === +req.params.id);
+    if (!foundTest) {
+        res.sendStatus(404);
+        return;
+    }
+    foundTest.title = req.body.title;
+    console.log(db.tests);
+    res
+        .sendStatus(204)
+        .json(foundTest);
+});
 app.listen(PORT, () => {
     console.log(`Starting app at port ${PORT} `);
 });

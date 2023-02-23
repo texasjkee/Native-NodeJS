@@ -18,11 +18,11 @@ const jsonBodyMiddleware = express_1.default.json();
 exports.app.use(jsonBodyMiddleware);
 const db = {
     users: [
-        { id: 1, title: 'example#1' },
-        { id: 2, title: 'example#2' },
-        { id: 3, title: 'example#3' },
-        { id: 4, title: 'example#4' },
-        { id: 5, title: 'example#6' },
+        { id: 1, title: 'example#1-end', usersCount: 8 },
+        { id: 2, title: 'example#2', usersCount: 8 },
+        { id: 3, title: 'example#3', usersCount: 8 },
+        { id: 4, title: 'example#4-end', usersCount: 8 },
+        { id: 5, title: 'example#6', usersCount: 8 },
     ]
 };
 exports.app.get('/', (req, res) => {
@@ -31,9 +31,14 @@ exports.app.get('/', (req, res) => {
 exports.app.get('/users', (req, res) => {
     let foundUsers = db.users;
     if (req.query.title) {
-        foundUsers = foundUsers.filter(t => t.title.indexOf(req.query.title) > -1);
+        foundUsers = foundUsers.filter(u => u.title.indexOf(req.query.title) > -1);
     }
-    res.json(foundUsers);
+    res.json(foundUsers.map(dbUser => {
+        return {
+            id: dbUser.id,
+            title: dbUser.title
+        };
+    }));
 });
 exports.app.get('/user/:id', (req, res) => {
     const foundUser = db.users.find(el => el.id === +req.params.id);
@@ -41,7 +46,10 @@ exports.app.get('/user/:id', (req, res) => {
         res.sendStatus(exports.HTTP_STATUS.NOT_FOUND_404);
         return;
     }
-    res.json(foundUser);
+    res.json({
+        id: foundUser.id,
+        title: foundUser.title
+    });
 });
 exports.app.post('/user', (req, res) => {
     if (!req.body.title) {
@@ -50,7 +58,8 @@ exports.app.post('/user', (req, res) => {
     }
     const createdUser = {
         id: +(new Date()),
-        title: req.body.title
+        title: req.body.title,
+        usersCount: 1
     };
     db.users.push(createdUser);
     res

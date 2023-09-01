@@ -1,0 +1,58 @@
+export const goods = [
+    {
+        id: 'js01',
+        category: 'books',
+        name: 'Yuri Krupenin',
+        poster: "https://images.unsplash.com/photo-1693461564009-b8d92aceea64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+        price: 750,
+    },
+    {
+        id: 'js02',
+        category: 'books',
+        name: 'Paul Bill',
+        poster: 'https://images.unsplash.com/photo-1693323818873-bcf90d64b1fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+        price: 1450,
+    },
+    {
+        id: 'js03',
+        category: 'books',
+        name: 'Anthony Adu',
+        poster: "https://images.unsplash.com/photo-1661904708589-2e20885a3297?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+        price: 950,
+    },
+    {
+        id: 'data01',
+        category: 'books',
+        name: 'Pat Rindone',
+        poster: 'https://images.unsplash.com/photo-1682685797795-5640f369a70a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
+        price: 850,
+    },
+    {
+        id: 'js0811111111',
+        category: 'books',
+        name: 'Yuri Krupenin',
+        poster: "https://images.unsplash.com/photo-1693461564009-b8d92aceea64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+        price: 750,
+    },
+    {
+        id: 'js0322',
+        category: 'books',
+        name: 'Paul Bill',
+        poster: 'https://images.unsplash.com/photo-1693323818873-bcf90d64b1fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+        price: 1450,
+    },
+    {
+        id: 'js08',
+        category: 'books',
+        name: 'Anthony Adu',
+        poster: "https://images.unsplash.com/photo-1661904708589-2e20885a3297?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+        price: 950,
+    },
+    {
+        id: 'data00',
+        category: 'books',
+        name: 'Pat Rindone',
+        poster: 'https://images.unsplash.com/photo-1682685797795-5640f369a70a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
+        price: 850,
+    },
+];

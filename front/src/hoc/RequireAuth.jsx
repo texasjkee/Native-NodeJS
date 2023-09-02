@@ -1,5 +1,5 @@
 import { Navigate, useActionData, useLoaderData, useLocation } from 'react-router-dom'
-import useAuth from '../hook/useAuth';
+import { useAuth } from '../hook/useAuth';
 
 const RequireAuth = () => {
   const { children } = useLoaderData().props;
